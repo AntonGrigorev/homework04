@@ -1,25 +1,19 @@
-version: '1.0.{build}'
-
 image: Visual Studio 2017
 
-platform:
-  - x64
- 
-configuration:
-  - Release
-  - Debug
-
-install:
-    - git submodule update --init --recursive
-
-before_build:
-    - cmake -G "Visual Studio 15 2017 Win64" .
-
-build:
-  project: $(APPVEYOR_BUILD_FOLDER)\$(APPVEYOR_PROJECT_NAME).sln
-
-test_script:
-  - '%APPVEYOR_BUILD_FOLDER%\%CONFIGURATION%\tests.exe'
+build_script:
+ - cd hello_world_application
+ - cmake -H. -B_build
+ - cmake --build _build
+ - cmake --build _build --target hello_world
+ - _build\Debug\hello_world.exe
+ - echo "Testing hello_world is done"
+ - cd ..
+ - cd solver_application
+ - cmake -H. -B_build
+ - cmake --build _build
+ - cmake --build _build --target solver
+ - echo "Testing solver is done"
+version: 1.0.{build}
 notifications:
 - provider: Email
   to:
