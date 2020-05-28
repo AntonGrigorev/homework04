@@ -1,19 +1,25 @@
-image: Visual Studio 2019
+version: '1.0.{build}'
 
-build_script:
- - cmd: cd hello_world_application
- - cmd: cmake -H. -B_build
- - cmd: cmake --build _build
- - cmd: cmake --build _build --target hello_world
- - cmd: _build\Debug\hello_world.exe
- - cmd: echo "Testing hello_world is done"
- - cmd: cd ..
- - cmd: cd solver_application
- - cmd: cmake -H. -B_build
- - cmd: cmake --build _build
- - cmd: cmake --build _build --target solver
- - cmd: echo "Testing solver is done"
-version: 1.0.{build}
+image: Visual Studio 2017
+
+platform:
+  - x64
+ 
+configuration:
+  - Release
+  - Debug
+
+install:
+    - git submodule update --init --recursive
+
+before_build:
+    - cmake -G "Visual Studio 15 2017 Win64" .
+
+build:
+  project: $(APPVEYOR_BUILD_FOLDER)\$(APPVEYOR_PROJECT_NAME).sln
+
+test_script:
+  - '%APPVEYOR_BUILD_FOLDER%\%CONFIGURATION%\tests.exe'
 notifications:
 - provider: Email
   to:
