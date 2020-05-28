@@ -15,8 +15,6 @@ build_script:
  - cmd: cmake --build _build --target solver
  - cmd: echo "Testing solver is done"
 version: 1.0.{build}
-build:
-  verbosity: minimal
 notifications:
 - provider: Email
   to:
