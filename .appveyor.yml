@@ -18,8 +18,8 @@ notifications:
 - provider: Email
   to:
   - antongr2001@gmail.com
-  subject: homework04
-  message: От ci.appveyor.com
+  subject: homework04 (appveyor)
+  message: Ок! 1.0.{build} - ci.appveyor.com
   on_build_success: true
   on_build_failure: false
   on_build_status_changed: false
