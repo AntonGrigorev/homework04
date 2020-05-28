@@ -19,7 +19,7 @@ notifications:
   to:
   - antongr2001@gmail.com
   subject: homework04 (appveyor)
-  message: Ок! 1.0.{build} - ci.appveyor.com
+  message: Ок! build! - ci.appveyor.com
   on_build_success: true
   on_build_failure: false
   on_build_status_changed: false
