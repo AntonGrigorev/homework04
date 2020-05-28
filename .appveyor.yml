@@ -1,3 +1,4 @@
+version: 1.0.{build}
 image: Visual Studio 2017
 
 build_script:
@@ -13,7 +14,6 @@ build_script:
  - cmake --build _build
  - cmake --build _build --target solver
  - echo "Testing solver is done"
-version: 1.0.{build}
 notifications:
 - provider: Email
   to:
